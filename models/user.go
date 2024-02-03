@@ -20,7 +20,6 @@ type User struct {
 	Password  string `gorm:"size:255;not null;" json:"password"`
 	CreatedAt time.Time
 	UpdatedAt time.Time
-	DeletedAt *time.Time `sql:"index"`
 }
 
 // BeforeCreate はGORMのフックで、Userが保存される前に呼び出されます。
@@ -65,7 +64,7 @@ func (u *User) beforeSave() error {
 func LoginCheck(email, password string) (string, error) {
 	u := User{}
 	if err := DB.Where("email = ?", email).Take(&u).Error; err != nil {
-		return "", err // 認証エラーをより一般的なメッセージにする
+		return "", errors.New("login failed")
 	}
 
 	if err := VerifyPassword(password, u.Password); err != nil {

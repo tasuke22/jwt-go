@@ -21,7 +21,6 @@ func GenerateToken(user_id string) (string, error) {
 		return "", fmt.Errorf("failed to parse TOKEN_HOUR_LIFESPAN: %v", err)
 	}
 
-	fmt.Println(user_id)
 	// JWTクレームセットを作成
 	claims := jwt.MapClaims{
 		"authorized": true,                                                            // 認証済みフラグ

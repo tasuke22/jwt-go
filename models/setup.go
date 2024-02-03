@@ -37,7 +37,4 @@ func ConnectDataBase() {
 	} else {
 		fmt.Println("We are connected to the database ", "mysql")
 	}
-
-	DB.AutoMigrate(&User{})
-
 }
