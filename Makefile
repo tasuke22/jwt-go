@@ -12,3 +12,5 @@ db:
 	docker compose exec -it db mysql -u myuser -pmypassword -D mydatabase
 logs:
 	docker compose logs -f
+migrate-up:
+	sqlboiler mysql -c config/database.toml -o models -p models --no-tests --wipe
