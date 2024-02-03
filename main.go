@@ -1,17 +1,19 @@
 package main
 
-import "fmt"
+import (
+	"github.com/gin-gonic/gin"
+	"github.com/tasuke/go-auth/controllers"
+	"github.com/tasuke/go-auth/models"
+)
 
 func main() {
-	var arrayList [5]int
-	for _, v := range arrayList {
-		fmt.Println(v)
-	}
-	fmt.Println("Hello World!")
-	fmt.Println("Hello World!")
-	fmt.Println("Hello World!")
-	fmt.Println("Hello World!")
-	fmt.Println("Hello World!")
-	fmt.Println("Hello World!")
-	fmt.Println("Hello World!")
+	models.ConnectDataBase()
+
+	r := gin.Default()
+
+	public := r.Group("/api")
+
+	public.POST("/register", controllers.Register)
+
+	r.Run(":8080")
 }
